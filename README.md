@@ -135,7 +135,7 @@ $manager->append([SecondMiddleware::class, ThirdMiddleware::class]);
 // priority list: [..., FirstMiddleware::class, SecondMiddleware::class, ThirdMiddleware::class]
 ```
 
-## Prepending middleware
+### Prepending middleware
 
 Use `prepend(string|array $middleware)` method to prepend middleware to the priority list.
 
@@ -154,7 +154,7 @@ $manager->prepend([SecondMiddleware::class, ThirdMiddleware::class]);
 // priority list: [SecondMiddleware::class, ThirdMiddleware::class, FirstMiddleware::class, ...]
 ```
 
-## Add middleware before specific middleware
+### Add middleware before specific middleware
 
 Use `before(string $middleware, string|array $newMiddleware)` method to add middleware before specific middleware.
 
@@ -183,7 +183,7 @@ $manager->before(SubstituteBindings::class, [FirstMiddleware::class, SecondMiddl
 // priority list: [..., FirstMiddleware::class, SecondMiddleware::class, SubstituteBindings::class, ...]
 ```
 
-## Add middleware after specific middleware
+### Add middleware after specific middleware
 
 Use `after(string $middleware, string|array $newMiddleware)` method to add middleware after specific middleware.
 
