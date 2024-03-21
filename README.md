@@ -261,6 +261,53 @@ $manager->remove([SecondMiddleware::class, ThirdMiddleware::class]);
 // priority list: [FirstMiddleware::class]
 ```
 
+> After removing middleware from the priority list, it's position will be determined by the order of registration
+> in the group middleware. See example below.
+
+```php
+<?php
+
+use App\Http\Middleware\FirstMiddleware;
+use App\Http\Middleware\SecondMiddleware;
+use App\Http\Middleware\ThirdMiddleware;
+use App\Http\Middleware\FourthMiddleware;
+use App\Http\Middleware\FifthMiddleware;
+
+$middleware->appendToGroup('web', [
+    FirstMiddleware::class,
+    SecondMiddleware::class,
+    ThirdMiddleware::class,
+    FourthMiddleware::class,
+    FifthMiddleware::class,
+]);
+
+$manager = MiddlewarePriorityManager::withDefaults($middleware);
+$manager->prepend(FirstMiddleware::class);
+// priority list: [FirstMiddleware::class, ...]
+
+$manager->prepend(SecondMiddleware::class);
+// priority list: [SecondMiddleware::class, FirstMiddleware::class, ...]
+
+$manager->before(FirstMiddleware::class, FourthMiddleware::class);
+// priority list: [SecondMiddleware::class, FourthMiddleware::class, FirstMiddleware::class, ...]
+
+$manager->after(FourthMiddleware::class, ThirdMiddleware::class);
+// priority list: [SecondMiddleware::class, FourthMiddleware::class, ThirdMiddleware::class, FirstMiddleware::class, ...]
+
+$manager->remove(FourthMiddleware::class);
+// priority list: [SecondMiddleware::class, ThirdMiddleware::class, FirstMiddleware::class, ...]
+
+/*
+ * Middleware will be called in following order:
+ * 
+ * 1. FourthMiddleware::class (was removed from the priority list);
+ * 2. FifthMiddleware::class (was not added to the priority list in first place);
+ * 3. SecondMiddleware::class (by priority list order);
+ * 4. ThirdMiddleware::class (by priority list order);
+ * 5. FirstMiddleware::class (by priority list order).
+ */
+```
+
 ### Get current priority list
 
 If you need to retrieve current priority list, you can use `getPriority()` method.
