@@ -295,6 +295,15 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        // First you need to register middleware to some group.
+        $middleware->appendToGroup('web', [
+            FirstMiddleware::class,
+            SecondMiddleware::class,
+            ThirdMiddleware::class,
+        ]);
+        
+        // Now you can manage priority list.
+
         $manager = MiddlewarePriorityManager::withDefaults($middleware);
         $manager->prepend(FirstMiddleware::class);
         $manager->before(\Illuminate\Routing\Middleware\SubstituteBindings::class, SecondMiddleware::class);
