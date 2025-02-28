@@ -16,8 +16,8 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.21.1",
-        "orchestra/testbench": "^9.0.0",
-        "pestphp/pest": "^2.15"
+        "orchestra/testbench": "^v10.0.0",
+        "pestphp/pest": "^v3.7.4"
     },
     "autoload": {
         "psr-4": {

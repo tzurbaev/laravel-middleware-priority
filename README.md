@@ -1,13 +1,13 @@
-# Middleware priority manager for Laravel 11+
+# Middleware priority manager for Laravel 11 & 12
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laniakea/middleware-priority.svg?style=flat-square)](https://packagist.org/packages/laniakea/middleware-priority)
 [![Tests](https://img.shields.io/github/actions/workflow/status/tzurbaev/laravel-middleware-priority/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/tzurbaev/laravel-middleware-priority/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/laniakea/middleware-priority.svg?style=flat-square)](https://packagist.org/packages/laniakea/middleware-priority)
 
-This package provides more flexible way to manage HTTP middleware priority in Laravel 11+ applications.
+This package provides more flexible way to manage HTTP middleware priority in Laravel 11 & 12 applications.
 
-> Please note that this package only compatible with fresh Laravel 11+ applications
-> (or applications that have been upgraded to Laravel 11+ with new directory structure / application bootstrapping).
+> Please note that this package only compatible with fresh Laravel 11/12 applications
+> (or applications that have been upgraded to Laravel 11/12 with new directory structure / application bootstrapping).
 
 You can simply append/prepend your middleware to the priority list or do more complex things, such as:
 
@@ -15,7 +15,7 @@ You can simply append/prepend your middleware to the priority list or do more co
 - Swap positions of two middleware;
 - Remove middleware from the priority list.
 
-This package provides default Laravel's priority list (latest update: Laravel 11.0.7; check `DefaultMiddlewarePriority` class),
+This package provides default Laravel's priority list (latest update: Laravel 12.0.1; check `DefaultMiddlewarePriority` class),
 so you can use it as a base for your custom priority list.
 
 ## Installation
